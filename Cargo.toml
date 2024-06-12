@@ -1,0 +1,23 @@
+[package]
+name = "htmlproc"
+version = "0.1.0"
+edition = "2021"
+authors = ["nabbisen <nabbisen@scqr.net>"]
+license = "Apache-2.0"
+description = "HTML processors as utils written in Rust"
+repository = "https://github.com/nabbisen/htmlproc-rs"
+readme = "README.md"
+categories = ["web-programming", "value-formatting", "development-tools"]
+keywords = ["html", "format", "productivity"]
+rust-version = "1.74.0"
+
+[features]
+default = []
+# testing: `cargo test --features full`
+full = ["omit_enclosures"]
+# functions
+omit_enclosures = []
+
+[dependencies]
+html5ever = "^0.27"
+markup5ever_rcdom = "^0.3"
