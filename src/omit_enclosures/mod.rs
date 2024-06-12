@@ -6,8 +6,9 @@ use std::default::Default;
 
 mod tests;
 
-/// [feature entry point]
 /// omits specific enclosures of tags in html
+/// 
+/// [feature entry point]
 ///
 /// ```rust
 /// use htmlproc::omit_enclosures::manipulate;
