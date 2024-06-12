@@ -1,6 +1,6 @@
 [package]
 name = "htmlproc"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["nabbisen <nabbisen@scqr.net>"]
 license = "Apache-2.0"
@@ -17,6 +17,9 @@ default = []
 full = ["omit_enclosures"]
 # functions
 omit_enclosures = []
+
+[package.metadata.docs.rs]
+features = ["full"]
 
 [dependencies]
 html5ever = "^0.27"

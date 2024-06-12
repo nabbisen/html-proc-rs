@@ -32,5 +32,5 @@ Remove specific tag enclosures from HTML text.
 ```rust
 use htmlproc::omit_enclosures::manipulate;
 
-let result: String = manipulate(HTML, OMIT_TAGS);
+let result: String = manipulate("<div>...<span>---</span>...</div>", &["span"]);
 ```
