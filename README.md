@@ -8,17 +8,24 @@
 HTML processors as utils written in Rust.
 Each function is offered as a single `feature`, so the dependencies are kept small.
 
-## Functions
+## Install in Rust project
+
+```sh
+# intall crate
+cargo add htmlproc
+
+# intall crate with specific features
+cargo add htmlproc --features omit_enclosures
+
+# uninstall
+# cargo remove htmlproc
+```
+
+## Functions (Features)
 
 ### omit_enclosures
 
 Remove specific tag enclosures from HTML text.
-
-#### Install
-
-```sh
-cargo add htmlproc --features omit_enclosures
-```
 
 #### Usage
 
