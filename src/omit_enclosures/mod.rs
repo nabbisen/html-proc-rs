@@ -55,12 +55,26 @@ fn scan(handle: &Handle, omit_tags: &[&str], output: &mut String) {
                 scan(child, omit_tags, output);
             }
         }
-        NodeData::Element { ref name, .. } => {
+        NodeData::Element {
+            ref name,
+            ref attrs,
+            ..
+        } => {
             let name_local = name.local.as_ref();
             if !omit_tags.contains(&name_local) {
                 // start tag
                 output.push('<');
                 output.push_str(name_local);
+
+                let attrs = attrs
+                    .clone()
+                    .into_inner()
+                    .iter()
+                    .map(|x| format!(" {}=\"{}\"", x.name.local, x.value))
+                    .collect::<Vec<String>>()
+                    .join("");
+                output.push_str(attrs.as_str());
+
                 output.push('>');
             }
 

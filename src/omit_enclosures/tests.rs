@@ -86,10 +86,21 @@ mod tests {
     }
 
     #[test]
-    fn ignore_any_attr_1() {
-        let source = "<div id=\"mydiv\"><span style=\"color: yellow;\">Remove me</span><p class=\"myp\">Keep me</p><span>And me</span></div>";
+    fn attrs_preserved_1() {
+        let source = "<div id=\"mydiv\" class=\"mydiv\"><span style=\"color: yellow;\">Remove me</span><p tabindex=\"10\">Keep me</p><span>And me</span></div>";
         let omits = &[];
-        let expect = "<div><span>Remove me</span><p>Keep me</p><span>And me</span></div>";
+        let expect = "<div id=\"mydiv\" class=\"mydiv\"><span style=\"color: yellow;\">Remove me</span><p tabindex=\"10\">Keep me</p><span>And me</span></div>";
+
+        let result = manipulate(source, omits);
+        assert_eq!(result, expect);
+    }
+
+    #[test]
+    fn attrs_preserved_2() {
+        let source =
+            "<div id=\"mydiv\" class=\"mydiv\"  tabindex=\"1\"><span>Remove me</span></div>";
+        let omits = &["span"];
+        let expect = "<div id=\"mydiv\" class=\"mydiv\" tabindex=\"1\">Remove me</div>";
 
         let result = manipulate(source, omits);
         assert_eq!(result, expect);
