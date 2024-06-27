@@ -1,7 +1,7 @@
-/// `cargo test --features omit_enclosures`
+/// `cargo test --features omit_enclosure`
 #[cfg(test)]
 mod tests {
-    use crate::omit_enclosures::manipulate;
+    use crate::omit_enclosure::manipulate;
 
     #[test]
     fn manipulate_1() {

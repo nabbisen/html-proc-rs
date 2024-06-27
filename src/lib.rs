@@ -1,2 +1,2 @@
-#[cfg(feature = "omit_enclosures")]
-pub mod omit_enclosures;
+#[cfg(feature = "omit_enclosure")]
+pub mod omit_enclosure;

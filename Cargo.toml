@@ -14,9 +14,9 @@ rust-version = "1.74.0"
 [features]
 default = []
 # testing: `cargo test --features full`
-full = ["omit_enclosures"]
+full = ["omit_enclosure"]
 # functions
-omit_enclosures = []
+omit_enclosure = []
 
 [package.metadata.docs.rs]
 features = ["full"]

@@ -11,7 +11,7 @@ mod tests;
 /// [feature entry point]
 ///
 /// ```rust
-/// use htmlproc::omit_enclosures::manipulate;
+/// use htmlproc::omit_enclosure::manipulate;
 ///
 /// const SOURCE: &str = "<div>outside <span>inside</span>\n</div>";
 /// const TARGET_TAGS: &[&str;1] = &["span"];
