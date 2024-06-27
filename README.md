@@ -11,10 +11,10 @@ Each function is offered as a single `feature`, so the dependencies are kept sma
 ## Install in Rust project
 
 ```sh
-# intall crate
+# install crate
 cargo add htmlproc
 
-# intall crate with specific features
+# install crate with specific features
 cargo add htmlproc --features path_to_url
 
 # uninstall

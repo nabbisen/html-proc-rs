@@ -8,11 +8,12 @@ use crate::utils::reset_document_outline;
 
 mod tests;
 
+/// URL HTTP protocol
 pub enum HttpProtocol {
     Http,
     Https,
 }
-// pub enum ConvertTag {
+/// conversion target tag
 pub enum ConvertTag {
     A,
     Img,
@@ -22,6 +23,7 @@ pub enum ConvertTag {
     Link,
     Script,
 }
+// conversion target attr of each tag
 const CONVERT_TAG_ATTRS: [(&str, &str); 7] = [
     ("a", "href"),
     ("img", "src"),
@@ -32,11 +34,17 @@ const CONVERT_TAG_ATTRS: [(&str, &str); 7] = [
     ("script", "src"),
 ];
 
+/// conversion options
 pub struct ConvertOptions {
+    /// HTTP protocol
     http_protocol: HttpProtocol,
+    /// FQDN (host name, domain)
     fqdn: String,
+    /// port number. Default: 443 on HTTPS, 80 on HTTP
     port: u16,
+    /// path base. Default: /
     current_path: String,
+    /// target tags
     tags: Vec<ConvertTag>,
 }
 impl ConvertOptions {
@@ -71,6 +79,7 @@ impl ConvertOptions {
     }
 }
 
+/// internal options made of specified options
 struct ActualConvertOptions<'a> {
     url_prefix: &'a str,
     current_path: &'a str,
