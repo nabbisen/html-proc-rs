@@ -15,7 +15,7 @@ Each function is offered as a single `feature`, so the dependencies are kept sma
 cargo add htmlproc
 
 # intall crate with specific features
-cargo add htmlproc --features omit_enclosure
+cargo add htmlproc --features path_to_url
 
 # uninstall
 # cargo remove htmlproc
@@ -33,4 +33,16 @@ Remove specific tag enclosure(s) from HTML text.
 use htmlproc::omit_enclosure::manipulate;
 
 let result: String = manipulate("<div>...<span>---</span>...</div>", &["span"]);
+```
+
+### path_to_url
+
+Convert paths to URLs.
+
+#### Usage
+
+```rust
+use htmlproc::path_to_url::convert;
+
+let result: String = convert("<a href=\"/some/path\">link</a>", ConvertOptions::new("target.domain"));
 ```
