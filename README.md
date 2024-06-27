@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/github/license/nabbisen/htmlproc-rs)](https://github.com/nabbisen/htmlproc-rs/blob/main/LICENSE)
 
 HTML processors as utils written in Rust.
-Each function is offered as a single `feature`, so the dependencies are kept small.
+Each function is offered as a single `feature`, so the dependencies are kept small. (`omit_enclosure` which is used as document outline formatter is exception.)
 
 ## Install in Rust project
 
