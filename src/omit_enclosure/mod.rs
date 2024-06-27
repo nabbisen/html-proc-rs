@@ -4,21 +4,23 @@ use markup5ever_rcdom::{Handle, NodeData, RcDom};
 
 use std::default::Default;
 
+use crate::consts::SELF_CLOSING_TAGS;
+
 mod tests;
 
 /// omits specific enclosures of tags in html
-/// 
+///
 /// [feature entry point]
 ///
 /// ```rust
-/// use htmlproc::omit_enclosures::manipulate;
+/// use htmlproc::omit_enclosure::manipulate;
 ///
-/// const SOURCE: &str = "<div>outside <span>inside</span>\n</div>";
-/// const TARGET_TAGS: &[&str;1] = &["span"];
-/// const EXPECT: &str = "<div>outside inside\n</div>";
+/// let source: &str = "<div>outside <span>inside</span>\n</div>";
+/// let target_tags: &[&str;1] = &["span"];
+/// let expect: &str = "<div>outside inside\n</div>";
 ///
-/// let result = manipulate(SOURCE, TARGET_TAGS);
-/// assert_eq!(result, EXPECT);
+/// let result = manipulate(source, target_tags);
+/// assert_eq!(result, expect);
 /// ```
 ///
 pub fn manipulate(html: &str, omit_tags: &[&str]) -> String {
@@ -83,7 +85,7 @@ fn scan(handle: &Handle, omit_tags: &[&str], output: &mut String) {
                 scan(child, omit_tags, output);
             }
 
-            if !omit_tags.contains(&name_local) {
+            if !SELF_CLOSING_TAGS.contains(&name_local) && !omit_tags.contains(&name_local) {
                 // end tag
                 output.push_str("</");
                 output.push_str(name_local);
