@@ -42,7 +42,7 @@ Convert paths to URLs.
 #### Usage
 
 ```rust
-use htmlproc::path_to_url::convert;
+use htmlproc::path_to_url::{convert, ConvertOptions};
 
 let result: String = convert("<a href=\"/some/path\">link</a>", ConvertOptions::new("target.domain"));
 ```
