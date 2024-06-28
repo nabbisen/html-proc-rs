@@ -66,3 +66,5 @@ use htmlproc::path_to_url::{convert, ConvertOptions};
 
 let result: String = convert("<a href=\"/some/path\">link</a>", ConvertOptions::new("target.domain"));
 ```
+
+In this case, `href` value "`/some/path`" is converted to "`https://target.domain/some/path`". Options such as http protocol, port number and current directory are available.
