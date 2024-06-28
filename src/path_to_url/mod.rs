@@ -4,7 +4,7 @@ use markup5ever_rcdom::{Handle, NodeData, RcDom};
 
 use std::path::Path;
 
-use crate::utils::reset_document_outline;
+use crate::core::utils::reset_document_outline;
 
 mod tests;
 
@@ -157,13 +157,13 @@ fn scan(handle: &Handle, options: &ActualConvertOptions, output: &mut String) {
             ref attrs,
             ..
         } => {
-            let name_local = name.local.as_ref();
+            let tag_name = name.local.as_ref();
 
-            let is_convert_tag = options.tags.contains(&name_local);
+            let is_convert_tag = options.tags.contains(&tag_name);
 
             // start tag
             output.push('<');
-            output.push_str(name_local);
+            output.push_str(tag_name);
 
             let attrs = attrs
                 .clone()
@@ -175,7 +175,7 @@ fn scan(handle: &Handle, options: &ActualConvertOptions, output: &mut String) {
                     let mut attr_value = x.value.to_string();
                     // path conversion
                     if is_convert_tag
-                        && CONVERT_TAG_ATTRS.contains(&(name_local, attr_name.as_str()))
+                        && CONVERT_TAG_ATTRS.contains(&(tag_name, attr_name.as_str()))
                         && !attr_value.contains("//")
                     {
                         // absolute path
@@ -204,7 +204,7 @@ fn scan(handle: &Handle, options: &ActualConvertOptions, output: &mut String) {
 
             // end tag
             output.push_str("</");
-            output.push_str(name_local);
+            output.push_str(tag_name);
             output.push('>');
         }
         NodeData::Text { ref contents } => {

@@ -2,9 +2,7 @@ use html5ever::tendril::TendrilSink;
 use html5ever::{parse_document, ParseOpts};
 use markup5ever_rcdom::{Handle, NodeData, RcDom};
 
-use std::default::Default;
-
-use crate::consts::SELF_CLOSING_TAGS;
+use crate::core::consts::SELF_CLOSING_TAGS;
 
 mod tests;
 
@@ -63,11 +61,11 @@ fn scan(handle: &Handle, omit_tags: &[&str], output: &mut String) {
             ref attrs,
             ..
         } => {
-            let name_local = name.local.as_ref();
-            if !omit_tags.contains(&name_local) {
+            let tag_name = name.local.as_ref();
+            if !omit_tags.contains(&tag_name) {
                 // start tag
                 output.push('<');
-                output.push_str(name_local);
+                output.push_str(tag_name);
 
                 let attrs = attrs
                     .clone()
@@ -85,10 +83,10 @@ fn scan(handle: &Handle, omit_tags: &[&str], output: &mut String) {
                 scan(child, omit_tags, output);
             }
 
-            if !SELF_CLOSING_TAGS.contains(&name_local) && !omit_tags.contains(&name_local) {
+            if !SELF_CLOSING_TAGS.contains(&tag_name) && !omit_tags.contains(&tag_name) {
                 // end tag
                 output.push_str("</");
-                output.push_str(name_local);
+                output.push_str(tag_name);
                 output.push('>');
             }
         }
