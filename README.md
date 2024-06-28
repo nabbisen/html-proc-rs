@@ -23,6 +23,26 @@ cargo add htmlproc --features path_to_url
 
 ## Functions (Features)
 
+### omit_attr
+
+Remove specific tag attribute(s) from HTML text.
+
+#### Usage
+
+First, run `cargo add htmlproc --features omit_attr`. Then specify attrs to omit. Three formats are available:
+
+- `attr`: remove all attrs from all tags.
+- `*.attr`: same to the above.
+- `tag.attr`: remove all attrs from specifig tag. ex) `span.style`
+
+```rust
+use htmlproc::omit_attr::manipulate;
+
+let html = "<div id=\"preserved\"><span style=\"want: remove;\" class=\"also: wanted;\" z-index=\"1\">Content</span></div>";
+let omit_attrs = &["style", "*.class", "span.z-index"];
+let result: String = manipulate(html, omit_attrs);
+```
+
 ### omit_enclosure
 
 Remove specific tag enclosure(s) from HTML text.
